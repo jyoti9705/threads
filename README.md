@@ -160,7 +160,7 @@
         4. MINIMUM_PRIORITY
         5. LOW_PRIORITY
         6. MEDIUM_PRIORITY
-        7. MAX_PRIORITY
+        7. MAXIMUM_PRIORITY
         8. HIGH_PRIORITY
         9. NORMAL_PRIORITY
     11. Methods to set Priorities
@@ -208,50 +208,110 @@
     1. If a thread wants to wait for another thread to complete its task and once done will join the thread then we
        should make use of join
     2. Methods in join
-       1. public final void join() throws InterruptedException
-       2. public final synchronized void join(long ms) throws InterruptedException
-       3. public final synchronized void join(long ms , int ns) throws InterruptedException
+        1. public final void join() throws InterruptedException
+        2. public final synchronized void join(long ms) throws InterruptedException
+        3. public final synchronized void join(long ms , int ns) throws InterruptedException
     3. join method should be called with reference of the thread for which we want to wait for execution to complete
     4. if the thread is not executed within the time it will start its own execution
 13. Difference between sleep , yield , join
     1. Purpose
-       1. Sleep : If any thread does not want to perform any operation for certain period of time then we can use sleep
-       2. Yield : It stops current executing thread and provides other thread opportunity to execute
-       3. Join : If a thread want to wait for another to complete its task then we make use of join
+        1. Sleep : If any thread does not want to perform any operation for certain period of time then we can use sleep
+        2. Yield : It stops current executing thread and provides other thread opportunity to execute
+        3. Join : If a thread want to wait for another to complete its task then we make use of join
     2. Examples
-       1. Sleep : Timer
-       2. Yield : Shopping Billing
-       3. Join : License Exam
+        1. Sleep : Timer
+        2. Yield : Shopping Billing
+        3. Join : License Exam
     3. Invocation
-       1. Sleep : it automatically invokes after given time period or if interrupted
-       2. Yield : Automatically invoked by threadScheduler
-       3. join : If a thread completes the task it is automatically invoked
+        1. Sleep : it automatically invokes after given time period or if interrupted
+        2. Yield : Automatically invoked by threadScheduler
+        3. join : If a thread completes the task it is automatically invoked
     4. Methods
-       1. Sleep
-          1. public static native void sleep(long ms)
-          2. public static void sleep(long ms , int ns)
-       2. Yield 
-          1. yield()
-       3. Join
-          1. join()
-          2. join(long ms)
-          3. join(long ms , int ns)
+        1. Sleep
+            1. public static native void sleep(long ms)
+            2. public static void sleep(long ms , int ns)
+        2. Yield
+            1. yield()
+        3. Join
+            1. join()
+            2. join(long ms)
+            3. join(long ms , int ns)
     5. Is method overloaded
-       1. Sleep : yes
-       2. Yield : no
-       3. Join : yes
+        1. Sleep : yes
+        2. Yield : no
+        3. Join : yes
     6. Exception thrown
-       1. Sleep : InterruptedException
-       2. Yield : No
-       3. Join : Interrupted Exception
+        1. Sleep : InterruptedException
+        2. Yield : No
+        3. Join : Interrupted Exception
     7. Static
-       1. Sleep : Yes
-       2. Yield : Yes
-       3. Join : No
+        1. Sleep : Yes
+        2. Yield : Yes
+        3. Join : No
     8. Native
-       1. Sleep : Yes
-       2. Yield : Yes
-       3. Join : No
+        1. Sleep : Yes
+        2. Yield : Yes
+        3. Join : No
+14. interrupt
+    1. It is used to interrupt an executing thread
+    2. interrupt method only works if the thread is in sleep or waiting state
+    3. if a thread is not is thread or waiting state then calling interrupt method will perform normal behaviour
+    4. Whenever we make use of interrupt method it will always throw an exception i.e. InterruptedException
+    5. Syntax
+        1. public void interrupt()
+
+15. interrupted() and isInterrupted()
+    1. interrupted is used to check if the thread is interrupted or not and isInterrupted() is also used to verify if
+       the thread is interrupted.
+    2. interrupted() method clears the interrupted value from true to false when interrupted , isInterrupted() will not
+       change the value and will always have the same value when called
+    3. interrupted() will change the result if called twice , inInterrupted() will not change the result even though we
+       call it multiple times
+    4. Syntax
+        1. public static boolean interrupted()
+        2. public boolean isInterrupted()
+16. Synchronization
+    1. Synchronization is the process used to control the accessibility of multiple threads to a shared resource
+    2. Problems without Synchronization
+        1. Data Inconsistency
+        2. Thread Interference
+    3. Advantages
+        1. No Data Inconsistency
+        2. No Thread Interference
+    4. Disadvantages
+        1. Threads waiting time period is increased
+        2. Create Performance problems
+    5. To overcome the disadvantages of Synchronization , Java has provided us with package java.util.concurrent
+        1. These packages overcome the thread waiting problem and resolve performance issues as well
+    6. Each object has its Lock and Synchronized Area
+    7. Types of Synchronization
+        1. Process Synchronization
+        2. Thread Synchronization
+            1. Mutual Exclusive
+                1. Synchronized Methods
+                    1. When synchronized is added with method the lock of objects will be acquired by the thread 1 and
+                       will be release only when the execution is complete , because of this no other thread can acquire
+                       the lock or access the resource
+
+                2. Synchronized block
+                    1. Synchronized block can be used when we want to synchronize only a part of the method and not the
+                       whole method
+                3. Static Synchronization
+            2. Cooperation
+                1. wait
+                2. notify
+                3. notifyAll
+17. Thread Group
+    1. Group thread based on some functionality
+    2. Including group of threads , thread groups can also contain subgroups
+    3. Advantage of maintain thread in the form of thread groups is that we can perform common operations very easily
+    4. Every thread in java belongs to some thread
+    5. Main thread belongs to main thread group
+    6. Every thread in java in child of System group
+    7. 
+
+
+          
 
     
 

@@ -11,6 +11,7 @@ public class ThreadTask extends Thread {
 
         ThreadTask threadTask = new ThreadTask();
         threadTask.start();
+        System.out.println(Thread.currentThread().getThreadGroup());
         //threadTask.start();
 
     }
